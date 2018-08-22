@@ -16,6 +16,7 @@ Plugin 'airblade/vim-gitgutter' " git diff thing
 Plugin 'terryma/vim-multiple-cursors' " write at several places at a time
 Plugin 'scrooloose/nerdtree' " file explorer
 Plugin 'ervandew/supertab' " tab completion
+Plugin 'nvie/vim-flake8' " python style checker
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -27,8 +28,13 @@ let mapleader = ","
 let localmapleader = "-"
 
 " fix tab indent thing
-set tabstop=4 shiftwidth=4 noexpandtab
+let indent_width = 4
+let &tabstop = indent_width
+let &shiftwidth = indent_width
+let &softtabstop = indent_width
+set expandtab
 
+" map for easy indent delete
 set hidden
 set incsearch hlsearch
 
@@ -48,7 +54,7 @@ let &t_te.="\e[0 q"
 augroup window_shower
 	autocmd!
 	autocmd WinEnter * set number relativenumber
-	autocmd WinLeave * set nonumber
+	autocmd WinLeave * set nonumber norelativenumber
 augroup END
 
 " syntax highlighting
@@ -57,7 +63,7 @@ syntax on
 " when starting vim without file, start nerdtree and set wd to projects dir
 augroup nerdtree
 	autocmd!
-	autocmd VimEnter * if argc() == 0 | cd ~/Files | NERDTree | endif
+	autocmd VimEnter * if argc() == 0 | cd $VIMHOME| NERDTree | endif
 augroup END
 
 "jump to start/end of line map
@@ -67,21 +73,22 @@ vnoremap <S-h> 0
 vnoremap <S-l> $
 
 " edit vimrc map
-nnoremap <leader>ev :vsplit ~/.vimrc<cr>
-nnoremap <leader>sv :source ~/.vimrc<cr>
+nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
+nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>wq :wq<cr>
 nnoremap <leader>q :q<cr>
 
-" regex
-nnoremap <leader>re :OverCommandLine<cr>%s/
-vnoremap <leader>re :OverCommandLine<cr>s/\%V
-nnoremap <leader>lre :OverCommandLine<cr>s/
+" regex search replace
+nnoremap <leader>rer :OverCommandLine<cr>%s/
+vnoremap <leader>rer :OverCommandLine<cr>s/\%V
+nnoremap <leader>lrer :OverCommandLine<cr>s/
+
 " quoute word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
 " turn of highlight after search
-nnoremap <leader>nh :nohls<cr>
+"nnoremap <esc> <esc>:nohls<cr>
 
 " window size
 nnoremap <leader>wh <C-w>+
@@ -96,8 +103,8 @@ vnoremap <C-c> "*y
 set noswapfile
 
 " fast scroll
-nnoremap <C-k> 2k
-nnoremap <C-j> 2j
+nnoremap <S-k> 2k
+nnoremap <S-j> 2j
 
 " comment out map
 augroup comment_out
@@ -131,3 +138,7 @@ set statusline+=\ line:\
 set statusline+=%l
 set statusline+=/
 set statusline+=%L\ 
+
+" visual select line
+nnoremap vv V
+

@@ -141,4 +141,3 @@ set statusline+=%L\
 
 " visual select line
 nnoremap vv V
-

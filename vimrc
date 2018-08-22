@@ -51,11 +51,16 @@ let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
 " make more obvious which window active
+" winleave statusbar not working fix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 augroup window_shower
 	autocmd!
-	autocmd WinEnter * set number relativenumber
-	autocmd WinLeave * set nonumber norelativenumber
+	autocmd WinEnter * set number relativenumber | hi StatusLine ctermbg=black ctermfg=green | set statusline=%f%=col:\ %-6c\ line:\ %l/%L\ 
+	autocmd WinLeave * set nonumber norelativenumber | set statusline=%f 
 augroup END
+
+
+
+
 
 " syntax highlighting
 syntax on
@@ -141,3 +146,5 @@ set statusline+=%L\
 
 " visual select line
 nnoremap vv V
+
+nnoremap <leader>j J

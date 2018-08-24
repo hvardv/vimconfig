@@ -51,16 +51,11 @@ let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
 " make more obvious which window active
-" winleave statusbar not working fix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 augroup window_shower
 	autocmd!
-	autocmd WinEnter * set number relativenumber | hi StatusLine ctermbg=black ctermfg=green | set statusline=%f%=col:\ %-6c\ line:\ %l/%L\ 
-	autocmd WinLeave * set nonumber norelativenumber | set statusline=%f 
+	autocmd WinEnter * set number relativenumber | hi StatusLine ctermbg=black ctermfg=green | setlocal statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\ 
+    autocmd WinLeave * set nonumber norelativenumber | setlocal statusline=%f | echom "hey"
 augroup END
-
-
-
-
 
 " syntax highlighting
 syntax on
@@ -102,7 +97,7 @@ nnoremap <leader>wn <C-w><
 nnoremap <leader>ww <C-w>>
 
 "copy to clipboard
-vnoremap <C-c> "*y
+vnoremap <C-c> "+y
 
 " disable swap files
 set noswapfile
@@ -134,17 +129,14 @@ augroup END
 " open nerdtree
 nnoremap <leader>nt :NERDTree<cr>
 
-" statusline
-set statusline=%f
-" right side
-set statusline+=%=
-set statusline+=col:\ %-6c
-set statusline+=\ line:\ 
-set statusline+=%l
-set statusline+=/
-set statusline+=%L\ 
-
 " visual select line
 nnoremap vv V
 
+" join line belown with current line
 nnoremap <leader>j J
+
+" status line
+set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\ 
+
+" right margin
+set colorcolumn=80

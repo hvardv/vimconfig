@@ -54,7 +54,7 @@ let &t_te.="\e[0 q"
 augroup window_shower
 	autocmd!
 	autocmd WinEnter * set number relativenumber | hi StatusLine ctermbg=black ctermfg=green | setlocal statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\ 
-    autocmd WinLeave * set nonumber norelativenumber | setlocal statusline=%f | echom "hey"
+    autocmd WinLeave * set nonumber norelativenumber | setlocal statusline=%f 
 augroup END
 
 " syntax highlighting
@@ -63,7 +63,8 @@ syntax on
 " when starting vim without file, start nerdtree and set wd to projects dir
 augroup nerdtree
 	autocmd!
-	autocmd VimEnter * if argc() == 0 | cd $VIMHOME| NERDTree | endif
+	"autocmd VimEnter * if argc() == 0 | cd $VIMHOME| NERDTree | endif
+	autocmd VimEnter * if argc() == 0 | NERDTree | endif
 augroup END
 
 "jump to start/end of line map
@@ -120,11 +121,11 @@ augroup END
 nnoremap <C-f> /
 onoremap <C-f> /
 
-" get double parenhteses etc
-augroup double_parenth
-	autocmd!
-	autocmd FileType python,java inoremap <buffer> ( ()<left>
-augroup END
+" get double parenhteses etc FIX BETTER
+"augroup double_parenth
+	"autocmd!
+	"autocmd FileType python,java inoremap <buffer> ( ()<left>
+"augroup END
 
 " open nerdtree
 nnoremap <leader>nt :NERDTree<cr>
@@ -140,3 +141,9 @@ set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\
 
 " right margin
 set colorcolumn=80
+highlight ColorColumn ctermbg=5
+set nowrap
+nnoremap <leader>nh :nohls<cr>
+
+" quit all
+nnoremap <leader>qqq :qa!<cr>

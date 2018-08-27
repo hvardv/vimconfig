@@ -16,25 +16,23 @@ Plugin 'airblade/vim-gitgutter' " git diff thing
 Plugin 'terryma/vim-multiple-cursors' " write at several places at a time
 Plugin 'scrooloose/nerdtree' " file explorer
 Plugin 'ervandew/supertab' " tab completion
-Plugin 'nvie/vim-flake8' " python style checker
+Plugin 'nvie/vim-flake8' " python style checker 
+" All of your Plugins must be added before the following line 
+call vundle#end()            " required 
+filetype plugin indent on    " required 
+" To ignore plugin indent changes, instead use: 
+"filetype plugin on 
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+let mapleader = "," 
+let localmapleader = "-" 
 
-let mapleader = ","
-let localmapleader = "-"
+" fix tab indent thing 
+let indent_width = 4 
+let &tabstop = indent_width 
+let &shiftwidth = indent_width 
+let &softtabstop = indent_width 
+set expandtab 
 
-" fix tab indent thing
-let indent_width = 4
-let &tabstop = indent_width
-let &shiftwidth = indent_width
-let &softtabstop = indent_width
-set expandtab
-
-" map for easy indent delete
 set hidden
 set incsearch hlsearch
 
@@ -106,6 +104,8 @@ set noswapfile
 " fast scroll
 nnoremap <S-k> 2k
 nnoremap <S-j> 2j
+vnoremap <S-k> 2k
+vnoremap <S-j> 2j
 
 " comment out map
 augroup comment_out
@@ -146,4 +146,4 @@ set nowrap
 nnoremap <leader>nh :nohls<cr>
 
 " quit all
-nnoremap <leader>qqq :qa!<cr>
+nnoremap <leader>aqq :qa!<cr>

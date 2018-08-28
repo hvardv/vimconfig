@@ -12,16 +12,19 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'osyo-manga/vim-over' " highlight search and replace
 Plugin 'tpope/vim-fugitive' " git stuff
+Plugin 'tomtom/tcomment_vim' " comment plugin
 Plugin 'airblade/vim-gitgutter' " git diff thing
 Plugin 'terryma/vim-multiple-cursors' " write at several places at a time
 Plugin 'scrooloose/nerdtree' " file explorer
 Plugin 'ervandew/supertab' " tab completion
 Plugin 'nvie/vim-flake8' " python style checker 
+Plugin 'easymotion/vim-easymotion' 
+
 " All of your Plugins must be added before the following line 
 call vundle#end()            " required 
 filetype plugin indent on    " required 
 " To ignore plugin indent changes, instead use: 
-"filetype plugin on 
+
 
 let mapleader = "," 
 let localmapleader = "-" 
@@ -107,13 +110,6 @@ nnoremap <S-j> 2j
 vnoremap <S-k> 2k
 vnoremap <S-j> 2j
 
-" comment out map
-augroup comment_out
-	autocmd!
-	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
-	autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
-augroup END
-
 " auto bracket indent and so forth FIX IT
 "autocmd FileType java :iabbrev <buffer> psvmsa public<space>static<space>void<space>main(String[]<space>args)<space>{<cr>}<esc>kA<cr><BS>
 
@@ -140,10 +136,18 @@ nnoremap <leader>j J
 set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\ 
 
 " right margin
-set colorcolumn=80
-highlight ColorColumn ctermbg=5
-set nowrap
+augroup margin
+    autocmd!
+    autocmd FileType python,java setlocal colorcolumn=80 
+    autocmd FileType python,java highlight ColorColumn ctermbg=5 
+    autocmd FileType python,java setlocal nowrap
+augroup END
+
+" remove highligt
 nnoremap <leader>nh :nohls<cr>
 
 " quit all
 nnoremap <leader>aqq :qa!<cr>
+
+" vsplit map
+nnoremap <leader>vs :vsplit<cr>

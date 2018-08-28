@@ -19,12 +19,12 @@ Plugin 'scrooloose/nerdtree' " file explorer
 Plugin 'ervandew/supertab' " tab completion
 Plugin 'nvie/vim-flake8' " python style checker 
 Plugin 'easymotion/vim-easymotion' 
+Plugin 'tpope/vim-surround' " for surrounding chars like () '' etc
+Plugin 'vim-syntastic/syntastic' " syntax checker
 
 " All of your Plugins must be added before the following line 
 call vundle#end()            " required 
 filetype plugin indent on    " required 
-" To ignore plugin indent changes, instead use: 
-
 
 let mapleader = "," 
 let localmapleader = "-" 
@@ -54,8 +54,11 @@ let &t_te.="\e[0 q"
 " make more obvious which window active
 augroup window_shower
 	autocmd!
-	autocmd WinEnter * set number relativenumber | hi StatusLine ctermbg=black ctermfg=green | setlocal statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\ 
-    autocmd WinLeave * set nonumber norelativenumber | setlocal statusline=%f 
+	autocmd WinEnter * set number relativenumber 
+    autocmd WinEnter * hi StatusLine ctermbg=black ctermfg=green
+    autocmd WinEnter * setlocal statusline=%t%=\ col:\ %-6c\ line:\ %l/%L\ 
+    autocmd WinLeave * set nonumber norelativenumber
+    autocmd WinLeave * setlocal statusline=%t
 augroup END
 
 " syntax highlighting
@@ -89,7 +92,7 @@ nnoremap <leader>lrer :OverCommandLine<cr>s/
 " quoute word
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
-" turn of highlight after search
+" turn of highlight after search. fucks up everything
 "nnoremap <esc> <esc>:nohls<cr>
 
 " window size
@@ -114,8 +117,8 @@ vnoremap <S-j> 2j
 "autocmd FileType java :iabbrev <buffer> psvmsa public<space>static<space>void<space>main(String[]<space>args)<space>{<cr>}<esc>kA<cr><BS>
 
 " search
-nnoremap <C-f> /
-onoremap <C-f> /
+nnoremap <C-f> /\c
+onoremap <C-f> /\c
 
 " get double parenhteses etc FIX BETTER
 "augroup double_parenth

@@ -56,10 +56,17 @@ augroup window_shower
 	autocmd!
 	autocmd WinEnter * set number relativenumber 
     autocmd WinEnter * hi StatusLine ctermbg=black ctermfg=green
-    autocmd WinEnter * setlocal statusline=%t%=\ col:\ %-6c\ line:\ %l/%L\ 
     autocmd WinLeave * set nonumber norelativenumber
+augroup END
+
+augroup status_line
+    autocmd!
+    autocmd WinEnter * setlocal statusline=%t%=\ col:\ %-6c\ line:\ %l/%L\ 
     autocmd WinLeave * setlocal statusline=%t
 augroup END
+
+" mapping to see file path in status line
+nnoremap <leader>slp :setlocal statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\<cr>
 
 " syntax highlighting
 syntax on
@@ -84,6 +91,7 @@ nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
 nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>wq :wq<cr>
+nnoremap <leader>w<leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 
 " regex search replace

@@ -76,6 +76,8 @@ nnoremap <S-h> 0
 nnoremap <S-l> $
 vnoremap <S-h> 0
 vnoremap <S-l> $
+onoremap <S-h> 0
+onoremap <S-l> $
 
 " edit vimrc map
 nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>

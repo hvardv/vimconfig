@@ -151,9 +151,9 @@ set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\
 " right margin
 augroup margin
     autocmd!
-    autocmd FileType python,java setlocal colorcolumn=80 
-    autocmd FileType python,java highlight ColorColumn ctermbg=5 
-    autocmd FileType python,java setlocal nowrap
+    autocmd FileType python,java,html setlocal colorcolumn=80 
+    autocmd FileType python,java,html highlight ColorColumn ctermbg=5 
+    autocmd FileType python,java,html setlocal nowrap
 augroup END
 
 " remove highligt
@@ -164,3 +164,13 @@ nnoremap <leader>aqq :qa!<cr>
 
 " vsplit map
 nnoremap <leader>vs :vsplit<cr>
+
+" make underscore count as word break
+set iskeyword-=_
+
+" init number and statusline
+set number relativenumber
+hi StatusLine ctermbg=black ctermfg=green
+
+" Make :! behave like bash terminal better
+let $BASH_ENV = "~/.bash_aliases"

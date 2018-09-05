@@ -92,7 +92,7 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
 nnoremap <leader>wq :wq<cr>
 nnoremap <leader>w<leader>w :w<cr>
-nnoremap <leader>q :q<cr>
+nnoremap <leader>q :bd<cr>
 
 " regex search replace
 nnoremap <leader>rer :OverCommandLine<cr>%s/
@@ -164,9 +164,6 @@ nnoremap <leader>aqq :qa!<cr>
 
 " vsplit map
 nnoremap <leader>vs :vsplit<cr>
-
-" make underscore count as word break
-set iskeyword-=_
 
 " init number and statusline
 set number relativenumber

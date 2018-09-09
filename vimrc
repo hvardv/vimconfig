@@ -21,6 +21,7 @@ Plugin 'nvie/vim-flake8' " python style checker
 Plugin 'easymotion/vim-easymotion' 
 Plugin 'tpope/vim-surround' " for surrounding chars like () '' etc
 Plugin 'vim-syntastic/syntastic' " syntax checker
+Plugin 'Yggdroot/indentLine' " show indentation level
 
 " All of your Plugins must be added before the following line 
 call vundle#end()            " required 
@@ -30,11 +31,20 @@ let mapleader = ","
 let localmapleader = "-" 
 
 " fix tab indent thing 
-let indent_width = 4 
+let indent_width = 4 " default
 let &tabstop = indent_width 
 let &shiftwidth = indent_width 
 let &softtabstop = indent_width 
 set expandtab 
+
+augroup indent_width
+    autocmd!
+    autocmd FileType html setlocal tabstop=2
+    autocmd FileType html setlocal shiftwidth=2 
+    autocmd FileType html setlocal softtabstop=2 
+    autocmd FileType html set expandtab 
+augroup END
+
 
 set hidden
 set incsearch hlsearch
@@ -90,8 +100,9 @@ onoremap <S-l> $
 nnoremap <leader>ev :vsplit ~/.vim/vimrc<cr>
 nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 
+" writing/exiting
 nnoremap <leader>wq :wq<cr>
-nnoremap <leader>w<leader>w :w<cr>
+nnoremap <C-s> :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
 nnoremap <leader>q :bd<cr>
 
 " regex search replace
@@ -106,10 +117,10 @@ nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 "nnoremap <esc> <esc>:nohls<cr>
 
 " window size
-nnoremap <leader>wh <C-w>+
-nnoremap <leader>wl <C-w>-
-nnoremap <leader>wn <C-w><
-nnoremap <leader>ww <C-w>>
+nnoremap <leader>wh 5<C-w>+
+nnoremap <leader>wl 5<C-w>-
+nnoremap <leader>wn 5<C-w><
+nnoremap <leader>ww 5<C-w>>
 
 "copy to clipboard
 vnoremap <C-c> "+y
@@ -144,8 +155,11 @@ nnoremap vv V
 
 " join line belown with current line
 nnoremap <leader>j J
+vnoremap <leader>j J
 
-" status line
+" status line " not working for single window!
+set noruler
+set laststatus=2
 set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\ 
 
 " right margin
@@ -167,7 +181,20 @@ nnoremap <leader>vs :vsplit<cr>
 
 " init number and statusline
 set number relativenumber
-hi StatusLine ctermbg=black ctermfg=green
+" not working for single window!
+hi StatusLine ctermbg=black ctermfg=green 
 
 " Make :! behave like bash terminal better
 let $BASH_ENV = "~/.bash_aliases"
+
+" Make java packages work with syntastic various projects
+let g:syntastic_java_javac_classpath = "~/Files/INF2100/INF2100-asp-interpretor/no/uio/ifi/asp/classes"
+let g:syntastic_java_javac_classpath += ":~/Android/Sdk/platforms/android-24/*.jar"
+
+" Get leading spaces and show indent
+augroup indent_help
+    autocmd!
+    autocmd BufEnter * IndentLinesEnable
+    autocmd BufEnter * LeadingSpaceEnable
+augroup END
+

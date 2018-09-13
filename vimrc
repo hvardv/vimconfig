@@ -21,7 +21,6 @@ Plugin 'nvie/vim-flake8' " python style checker
 Plugin 'easymotion/vim-easymotion' 
 Plugin 'tpope/vim-surround' " for surrounding chars like () '' etc
 Plugin 'vim-syntastic/syntastic' " syntax checker
-Plugin 'Yggdroot/indentLine' " show indentation level
 
 " All of your Plugins must be added before the following line 
 call vundle#end()            " required 
@@ -191,10 +190,17 @@ let $BASH_ENV = "~/.bash_aliases"
 let g:syntastic_java_javac_classpath = "~/Files/INF2100/INF2100-asp-interpretor/no/uio/ifi/asp/classes"
 let g:syntastic_java_javac_classpath += ":~/Android/Sdk/platforms/android-24/*.jar"
 
-" Get leading spaces and show indent
-augroup indent_help
-    autocmd!
-    autocmd BufEnter * IndentLinesEnable
-    autocmd BufEnter * LeadingSpaceEnable
-augroup END
+" parenth and other doubles help
+inoremap () ()<esc>i
+inoremap [] []<esc>i
+inoremap {} {}<esc>i
+inoremap "" ""<esc>i
+inoremap '' ''<esc>i
+inoremap <> <><esc>i
+inoremap (): ():
 
+augroup java_short_hand
+    autocmd!
+    autocmd FileType java inoremap soprintln System.out.println
+    autocmd FileType java inoremap psvmsa public static void main(String[] args)
+augroup END

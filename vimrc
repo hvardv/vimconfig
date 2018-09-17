@@ -21,6 +21,8 @@ Plugin 'nvie/vim-flake8' " python style checker
 Plugin 'easymotion/vim-easymotion' 
 Plugin 'tpope/vim-surround' " for surrounding chars like () '' etc
 Plugin 'vim-syntastic/syntastic' " syntax checker
+Plugin 'junegunn/fzf' " file fuzzy finder
+Plugin 'junegunn/fzf.vim' " file fuzzy finder. Needs 2 plugins..
 
 " All of your Plugins must be added before the following line 
 call vundle#end()            " required 
@@ -198,9 +200,14 @@ inoremap "" ""<esc>i
 inoremap '' ''<esc>i
 inoremap <> <><esc>i
 inoremap (): ():
+inoremap (); ();<esc>hi
 
 augroup java_short_hand
     autocmd!
-    autocmd FileType java inoremap soprintln System.out.println
-    autocmd FileType java inoremap psvmsa public static void main(String[] args)
+    autocmd FileType java abbreviate soprintln System.out.println
+    autocmd FileType java abbreviate psvmsa public static void main(String[] args)
+    autocmd FileType java inoremap {<cr> {<cr><cr><BS>}<esc>kA<tab>
 augroup END
+
+" fuzzy finder map
+nnoremap <leader>fz :Files<cr>

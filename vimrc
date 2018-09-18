@@ -21,7 +21,6 @@ Plugin 'nvie/vim-flake8' " python style checker
 Plugin 'easymotion/vim-easymotion' 
 Plugin 'tpope/vim-surround' " for surrounding chars like () '' etc
 Plugin 'vim-syntastic/syntastic' " syntax checker
-Plugin 'Yggdroot/indentLine' " show indentation level
 
 " All of your Plugins must be added before the following line 
 call vundle#end()            " required 
@@ -103,6 +102,7 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 " writing/exiting
 nnoremap <leader>wq :wq<cr>
 nnoremap <C-s> :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
+nnoremap <leader>w<leader>w :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
 nnoremap <leader>q :bd<cr>
 
 " regex search replace
@@ -165,9 +165,9 @@ set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\
 " right margin
 augroup margin
     autocmd!
-    autocmd FileType python,java,html setlocal colorcolumn=80 
-    autocmd FileType python,java,html highlight ColorColumn ctermbg=5 
-    autocmd FileType python,java,html setlocal nowrap
+    autocmd FileType python,java,html,markdown setlocal colorcolumn=80 
+    autocmd FileType python,java,html,markdown highlight ColorColumn ctermbg=5 
+    autocmd FileType python,java,html,markdown setlocal nowrap
 augroup END
 
 " remove highligt
@@ -192,9 +192,15 @@ let g:syntastic_java_javac_classpath = "~/Files/INF2100/INF2100-asp-interpretor/
 let g:syntastic_java_javac_classpath += ":~/Android/Sdk/platforms/android-24/*.jar"
 
 " Get leading spaces and show indent
+" Fix!!!!!!!!!!!!!!!!!!!!!!!!!
 augroup indent_help
+    " autocmd!
+    " autocmd BufEnter * if $computer == "home" IndentLinesEnable
+    " autocmd BufEnter * if $computer == "home" LeadingSpaceEnable
+augroup END
+
+augroup java_bracket_help
     autocmd!
-    autocmd BufEnter * IndentLinesEnable
-    autocmd BufEnter * LeadingSpaceEnable
+    autocmd FileType java,c inoremap {<cr> {<cr>}<esc>ko
 augroup END
 

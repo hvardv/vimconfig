@@ -201,6 +201,8 @@ inoremap '' ''<esc>i
 inoremap <> <><esc>i
 inoremap (): ():
 inoremap (); ();<esc>hi
+inoremap ()<space> ()<space>
+inoremap ()<cr> ()<cr>
 
 augroup java_short_hand
     autocmd!
@@ -211,3 +213,6 @@ augroup END
 
 " fuzzy finder map
 nnoremap <leader>fz :Files<cr>
+
+" Turn off auto comment insert 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

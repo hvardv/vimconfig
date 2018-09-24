@@ -170,8 +170,11 @@ augroup margin
     autocmd FileType python,java,html highlight ColorColumn ctermbg=5 
     autocmd FileType python,java,html setlocal nowrap
 augroup END
+" I use it always.. remove abover later?
+set colorcolumn=80
+highlight ColorColumn ctermbg=5 
 
-" remove highligt
+ " remove highligt
 nnoremap <leader>nh :nohls<cr>
 
 " quit all
@@ -211,3 +214,7 @@ augroup END
 
 " fuzzy finder map
 nnoremap <leader>fz :Files<cr>
+
+" map buffer switch
+nnoremap <leader>bn :bn<cr>
+nnoremap <leader>bN :bp<cr>

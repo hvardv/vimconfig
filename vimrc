@@ -104,6 +104,7 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 " writing/exiting
 nnoremap <leader>wq :wq<cr>
 nnoremap <C-s> :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
+nnoremap <leader>w<leader>w :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
 nnoremap <leader>q :bd<cr>
 
 " regex search replace
@@ -170,11 +171,8 @@ augroup margin
     autocmd FileType python,java,html highlight ColorColumn ctermbg=5 
     autocmd FileType python,java,html setlocal nowrap
 augroup END
-" I use it always.. remove abover later?
-set colorcolumn=80
-highlight ColorColumn ctermbg=5 
 
- " remove highligt
+" remove highligt
 nnoremap <leader>nh :nohls<cr>
 
 " quit all
@@ -204,6 +202,8 @@ inoremap '' ''<esc>i
 inoremap <> <><esc>i
 inoremap (): ():
 inoremap (); ();<esc>hi
+inoremap ()<space> ()<space>
+inoremap ()<cr> ()<cr>
 
 augroup java_short_hand
     autocmd!
@@ -215,6 +215,5 @@ augroup END
 " fuzzy finder map
 nnoremap <leader>fz :Files<cr>
 
-" map buffer switch
-nnoremap <leader>bn :bn<cr>
-nnoremap <leader>bN :bp<cr>
+" Turn off auto comment insert 
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

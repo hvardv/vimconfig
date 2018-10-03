@@ -166,10 +166,14 @@ set statusline=%f%=\ col:\ %-6c\ line:\ %l/%L\
 " right margin
 augroup margin
     autocmd!
-    autocmd FileType python,java,html setlocal colorcolumn=80 
+    autocmd FileType python,java,html setlocal colorcolumn=90 
     autocmd FileType python,java,html highlight ColorColumn ctermbg=5 
     autocmd FileType python,java,html setlocal nowrap
 augroup END
+
+set colorcolumn=90 
+highlight ColorColumn ctermbg=5 
+setlocal nowrap
 
 " remove highligt
 nnoremap <leader>nh :nohls<cr>

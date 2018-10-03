@@ -104,6 +104,7 @@ nnoremap <leader>sv :source ~/.vim/vimrc<cr>
 " writing/exiting
 nnoremap <leader>wq :wq<cr>
 nnoremap <C-s> :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
+nnoremap <leader>w<leader>w :syntax off<cr>:w<cr>:syntax on<cr>:echom "Saved file"<cr>
 nnoremap <leader>q :bd<cr>
 
 " regex search replace

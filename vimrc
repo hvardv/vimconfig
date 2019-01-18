@@ -213,7 +213,7 @@ augroup java_short_hand
     autocmd!
     autocmd FileType java abbreviate soprintln System.out.println
     autocmd FileType java abbreviate psvmsa public static void main(String[] args)
-    autocmd FileType java inoremap {<cr> {<cr><cr><BS>}<esc>kA<tab>
+    autocmd FileType java C# inoremap {<cr> {<cr><cr><BS>}<esc>kA<tab>
 augroup END
 
 " fuzzy finder map
@@ -221,3 +221,14 @@ nnoremap <leader>fz :Files<cr>
 
 " Turn off auto comment insert 
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" git mappings 
+nnoremap <leader>gs :Gstatus<cr>
+
+" jump to bottom of screen
+nnoremap <leader>J L
+vnoremap <leader>J L
+
+" jump to top of screen
+nnoremap <leader>K H
+vnoremap <leader>K H
